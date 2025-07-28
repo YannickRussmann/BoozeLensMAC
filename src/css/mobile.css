@@ -1,0 +1,1059 @@
+/* ========================================
+   MOBILE RESPONSIVE STYLES
+   ======================================== */
+
+/* Mobile Loading Screen - Always visible on mobile initially */
+.mobile-loading-screen {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile-loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0a0a0a;
+        z-index: 10000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+    
+    .mobile-loading-screen.hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .loading-logo {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        object-position: center;
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.05); opacity: 1; }
+    }
+    
+    .loading-spinner-container {
+        display: none; /* Hide spinner - logo animation is enough */
+    }
+}
+
+/* Mobile breakpoints */
+@media screen and (max-width: 768px) {
+    /* Fix body and container spacing - CRITICAL FIX */
+    html, body {
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    }
+    
+    /* Prevent fixed background issues on iOS */
+    .background {
+        position: absolute !important;
+        height: 100vh;
+        will-change: transform;
+    }
+    
+    .container {
+        padding: 20px 15px 80px 15px; /* Bottom padding for larger nav */
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Header adjustments - FIXED FOR MOBILE */
+    header {
+        padding: 15px 10px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        margin-top: 0; /* Remove any default margin */
+    }
+    
+    .header-content {
+        padding: 20px 15px !important;
+        margin-bottom: 15px;
+    }
+    
+    header h1 {
+        font-size: 2.5em;
+        margin-bottom: 5px;
+        line-height: 1.1;
+    }
+    
+    .subtitle {
+        font-size: 0.85em;
+        letter-spacing: 0.2em;
+    }
+    
+    /* Navigation - Mobile Bottom Bar - COMPACT & PROFESSIONAL */
+    nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto !important;
+        width: 100%;
+        height: auto;
+        z-index: 9999;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0;
+        box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.3);
+        padding: 0;
+        margin: 0;
+        transform: translateZ(0);
+    }
+    
+    .nav-container {
+        padding: 8px 8px env(safe-area-inset-bottom, 8px) 8px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+    
+    /* Hide logo on mobile - it takes up valuable space */
+    .logo {
+        display: none !important;
+    }
+    
+    /* CRITICAL NAV MENU FIX */
+    .nav-menu {
+        display: flex !important;
+        position: relative;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        background: transparent;
+    }
+    
+    .nav-menu::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .nav-menu li {
+        flex: 1 1 auto;
+        display: flex;
+        min-width: 0;
+    }
+    
+    /* Mobile nav items - INDUSTRIAL GRADE */
+    .nav-item {
+        flex-direction: column;
+        padding: 8px 6px;
+        font-size: 0.7em;
+        gap: 3px;
+        min-width: 100%;
+        width: 100%;
+        height: 56px;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        border: none;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0.7);
+        transition: all 0.2s ease;
+    }
+    
+    /* Hide secondary nav items on mobile - show only 5 main items */
+    .nav-menu li:nth-child(3), /* Photos */
+    .nav-menu li:nth-child(6), /* Achievements */
+    .nav-menu li:nth-child(8), /* Emergency */
+    .nav-menu li:nth-child(9) { /* Settings */
+        display: none !important;
+    }
+    
+    /* Floating More button */
+    .mobile-more-button {
+        display: block !important;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        background: #00ff88;
+        border: none;
+        border-radius: 50%;
+        color: #0a0a0a;
+        font-size: 1.5em;
+        box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+        z-index: 9996;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-more-button:active {
+        transform: scale(0.95);
+    }
+    
+    .mobile-more-button i {
+        display: block;
+    }
+    
+    .nav-item::before {
+        display: none; /* Remove gradient animation on mobile */
+    }
+    
+    .nav-item i {
+        font-size: 1.8em;
+        margin: 0 !important;
+        display: block;
+    }
+    
+    .nav-item span {
+        position: static !important;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 0 !important;
+        font-size: 0.85em;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        font-weight: 600;
+        margin-top: 2px;
+    }
+    
+    .nav-item:hover {
+        background: none; /* Disable hover on mobile */
+    }
+    
+    .nav-item:active {
+        padding: 8px 6px; /* Keep same padding */
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(0.95); /* Touch feedback */
+        transition: transform 0.1s ease;
+    }
+    
+    .nav-item.active {
+        background: rgba(0, 255, 136, 0.1);
+        border-color: rgba(0, 255, 136, 0.3);
+        color: #00ff88;
+        box-shadow: none;
+    }
+    
+    .nav-item.active i {
+        filter: none; /* Remove glow on mobile to improve performance */
+    }
+    
+    /* Hide mobile menu toggle on mobile since we have bottom nav */
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    /* Auth container mobile */
+    .auth-container {
+        padding: 20px;
+    }
+    
+    .auth-box {
+        width: 100%;
+        max-width: 100%;
+        padding: 30px 20px;
+        margin: 0;
+    }
+    
+    /* Cards and sections */
+    .card {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+    
+    /* Fix Friends list */
+    #friendsList,
+    #friendRequests,
+    #searchResults {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #friendsList .btn,
+    #friendRequests .btn,
+    #searchResults .btn {
+        padding: 10px !important;
+        font-size: 0.85em !important;
+        min-height: 40px !important;
+    }
+    
+    /* CRITICAL SECTION FIX - Prevent black screen */
+    .section {
+        padding: 10px 0 85px 0 !important; /* Bottom padding for larger nav */
+        position: relative;
+        z-index: 1;
+        background: transparent;
+        min-height: calc(100vh - 130px);
+        opacity: 0;
+        transform: translateX(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        display: none;
+    }
+    
+    .section.active {
+        display: block !important;
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Action buttons - 2x2 GRID */
+    .action-buttons {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .action-buttons .btn {
+        width: 100%;
+        padding: 12px 8px;
+        font-size: 0.85em;
+        min-height: 50px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .action-buttons .btn i {
+        font-size: 1.3em;
+    }
+    
+    /* All buttons on mobile */
+    .btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+    
+    /* Stats grid */
+    .party-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .stat-card {
+        padding: 15px;
+        min-height: auto;
+    }
+    
+    .stat-icon {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+    }
+    
+    .stat-value {
+        font-size: 1.2em;
+    }
+    
+    .stat-label {
+        font-size: 0.7em;
+    }
+    
+    /* Dashboard friend cards */
+    .dashboard {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 80px;
+    }
+    
+    .friend-card {
+        padding: 20px;
+    }
+    
+    .bac-value {
+        font-size: 2em;
+    }
+    
+    /* Forms - INDUSTRIAL GRADE MOBILE INPUTS */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 12px !important;
+        line-height: 1.5 !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+        border-radius: 10px !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Fix for flex layouts - don't force width on flex children */
+    .chat-input input,
+    .form-group input,
+    .modal-body input {
+        width: 100% !important;
+    }
+    
+    /* Fix chat and game inputs specifically */
+    .chat-input {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    
+    .chat-input input {
+        flex: 1 1 auto !important;
+        min-width: 0 !important; /* Allow shrinking */
+    }
+    
+    .chat-input button {
+        flex: 0 0 auto !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Industrial standard button sizing */
+    .modal-body button,
+    div[style*="display: flex"] button {
+        min-width: 80px !important;
+        max-width: 120px !important;
+        padding: 10px 16px !important;
+        height: 44px !important;
+    }
+    
+    /* Fix Friends search */
+    .friends-search {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    
+    #friendSearchInput {
+        flex: 1 1 auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+        font-size: 16px !important;
+        padding: 14px !important;
+    }
+    
+    .friends-search button {
+        flex: 0 0 auto !important;
+        min-width: 100px !important;
+        max-width: 120px !important;
+    }
+    
+    /* Override inline styles for inputs - TARGETED APPROACH */
+    #modalDeviceId,
+    #newDeviceName,
+    #checkinLocation,
+    #username,
+    #homeAddress,
+    #emergencyContact,
+    #medicalInfo,
+    #safetyNotes {
+        font-size: 16px !important;
+        padding: 14px 16px !important;
+        min-height: 48px !important;
+    }
+    
+    /* Modal specific fixes */
+    .modal-body input[type="text"],
+    .modal-body input[type="email"],
+    .modal-body input[type="tel"],
+    .modal-body input[type="number"],
+    .modal-body select,
+    .modal-body textarea {
+        font-size: 16px !important;
+        min-height: 48px !important;
+        padding: 14px 16px !important;
+    }
+    
+    /* Fix party join layout */
+    #parties div[style*="display: flex"] {
+        display: flex !important;
+        gap: 10px !important;
+        align-items: stretch !important;
+    }
+    
+    /* Fix party join code specifically */
+    #joinPartyCode {
+        flex: 1 1 65% !important;
+        width: auto !important;
+        min-width: 0 !important;
+        font-size: 18px !important;
+        letter-spacing: 0.15em !important;
+        font-weight: 700 !important;
+        text-align: center !important;
+        padding: 14px 12px !important;
+        height: 50px !important;
+    }
+    
+    /* Fix join button */
+    #joinPartyBtn {
+        flex: 0 1 35% !important;
+        min-width: 90px !important;
+        max-width: 110px !important;
+        padding: 14px 12px !important;
+        height: 50px !important;
+        font-size: 0.95em !important;
+    }
+    
+    /* Ensure all text inputs in games and modals are readable */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="number"] {
+        font-size: 16px !important;
+        min-height: 44px !important; /* Apple's recommended touch target */
+    }
+    
+    /* Fix placeholder text visibility */
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(255, 255, 255, 0.5) !important;
+        font-size: 16px !important;
+    }
+    
+    /* Fix game inputs with buttons */
+    div[style*="display: flex"] input[type="text"] {
+        flex: 1 1 auto !important;
+        width: auto !important;
+        min-width: 0 !important;
+    }
+    
+    /* Fix party chat input */
+    #partyChatInput {
+        flex: 1 1 auto !important;
+        width: auto !important;
+    }
+    
+    /* Fix select dropdowns */
+    select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M6 8L0 0h12z'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        padding-right: 30px !important;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 20px auto;
+        max-height: 90vh;
+        padding: 20px;
+    }
+    
+    /* Games grid */
+    .games-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .game-card {
+        padding: 20px 15px;
+        min-height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .game-icon {
+        font-size: 2.5em;
+    }
+    
+    .game-title {
+        font-size: 0.95em;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    .game-players {
+        font-size: 0.75em;
+        opacity: 0.8;
+    }
+    
+    /* Emergency grid */
+    .emergency-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .emergency-card {
+        padding: 20px 10px;
+    }
+    
+    /* Settings */
+    .settings-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    /* Chat */
+    .chat-container {
+        height: 300px;
+        margin-bottom: 80px;
+    }
+    
+    /* Leaderboard */
+    .leaderboard {
+        margin-bottom: 80px;
+    }
+    
+    /* Device list */
+    .device-list {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Achievements grid */
+    .achievements-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .achievement {
+        padding: 15px 5px;
+    }
+    
+    .achievement-icon {
+        font-size: 1.5em;
+    }
+    
+    .achievement-name {
+        font-size: 0.7em;
+    }
+    
+    /* Hide decorative elements on mobile */
+    .visualizer {
+        display: none;
+    }
+    
+    .particles {
+        display: none;
+    }
+    
+    /* User profile widget - HIDE ON MOBILE */
+    #userProfile,
+    .user-profile {
+        display: none !important; /* Hide completely on mobile */
+    }
+    
+    /* Connection status - LEFT SIDE */
+    .connection-status {
+        position: fixed;
+        bottom: 100px; /* Well above nav bar */
+        left: 10px; /* Changed to left */
+        right: auto;
+        top: auto;
+        font-size: 0.65em;
+        padding: 6px 10px;
+        max-width: 120px;
+        z-index: 999;
+        background: rgba(10, 10, 10, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .connection-status.connected {
+        opacity: 0;
+        transform: translateX(-120px); /* Changed to negative for left side */
+    }
+    
+    /* Alert banner */
+    .alert-banner {
+        top: 60px;
+        font-size: 0.9em;
+        padding: 10px;
+    }
+    
+    /* Install button */
+    .install-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    
+    /* Party section mobile layout fixes */
+    #parties .card {
+        padding: 15px !important;
+    }
+    
+    #parties h3 {
+        font-size: 1.2em !important;
+        margin-bottom: 15px !important;
+    }
+    
+    #parties h4 {
+        font-size: 1em !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Split create and join into tabs on mobile */
+    @media screen and (max-width: 768px) {
+        #parties .card > div[style*="margin: 20px 0"] {
+            margin: 10px 0 !important;
+        }
+        
+        #parties .card > div[style*="text-align: center"] {
+            display: none !important; /* Hide the OR divider */
+        }
+        
+        /* Make create/join full width blocks */
+        #parties .card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        #createPartyBtn,
+        #joinPartyBtn {
+            width: 100% !important;
+            max-width: none !important;
+            min-width: none !important;
+            padding: 16px !important;
+            font-size: 1em !important;
+            font-weight: 600 !important;
+        }
+    }
+    
+    
+    /* Mobile More Menu Overlay - MOVED INSIDE MEDIA QUERY */
+    .mobile-more-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        z-index: 9998;
+        padding: 20px;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .mobile-more-menu.active {
+        transform: translateY(0);
+    }
+    
+    .mobile-more-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-more-header h3 {
+        margin: 0;
+        color: #00ff88;
+    }
+    
+    .mobile-more-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5em;
+        padding: 5px;
+        cursor: pointer;
+    }
+    
+    .mobile-more-items {
+        display: grid;
+        gap: 15px;
+    }
+    
+    .mobile-more-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+    
+    .mobile-more-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(0, 255, 136, 0.5);
+        transform: translateX(5px);
+    }
+    
+    .mobile-more-item i {
+        font-size: 1.5em;
+        width: 30px;
+        text-align: center;
+        color: #00ff88;
+    }
+    
+    .mobile-more-item span {
+        font-size: 1.1em;
+        font-weight: 500;
+    }
+    
+    /* Backdrop for more menu */
+    .mobile-more-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        z-index: 9997;
+    }
+    
+    .mobile-more-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Smaller phones */
+@media screen and (max-width: 380px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+    
+    .party-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .games-grid,
+    .emergency-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-item {
+        font-size: 0.65em;
+        padding: 8px 4px;
+        min-width: 0;
+    }
+    
+    .nav-item i {
+        font-size: 1.3em;
+    }
+    
+    .nav-item span {
+        font-size: 0.8em;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Landscape orientation fixes */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    nav {
+        position: relative;
+    }
+    
+    .section {
+        padding-bottom: 20px;
+    }
+    
+    .auth-box {
+        padding: 20px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* Fix for iOS bottom bar */
+    nav {
+        padding-bottom: 0;
+    }
+    
+    .nav-container {
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    }
+    
+    .section {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+    }
+    
+    /* Fix input zoom on iOS */
+    input, select, textarea {
+        font-size: 16px !important;
+        -webkit-appearance: none;
+    }
+    
+    /* Fix iOS scrolling issues - PROPER IMPLEMENTATION */
+    body {
+        position: relative; /* Don't fix position in general mobile */
+        height: 100vh;
+    }
+    
+    .container {
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* PWA standalone mode - NATIVE APP EXPERIENCE */
+@media all and (display-mode: standalone) {
+    /* Handle iOS status bar properly */
+    body {
+        padding-top: 0;
+        background: #0a0a0a;
+    }
+    
+    /* Add status bar background */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: env(safe-area-inset-top);
+        background: #0a0a0a;
+        z-index: 10001;
+    }
+    
+    /* Adjust container for PWA */
+    .container {
+        padding-top: calc(20px + env(safe-area-inset-top));
+    }
+    
+    /* More compact navigation in PWA */
+    nav {
+        height: calc(50px + env(safe-area-inset-bottom));
+    }
+    
+    .nav-container {
+        padding: 4px 4px env(safe-area-inset-bottom, 4px) 4px;
+    }
+    
+    /* Even more compact nav items in PWA */
+    .nav-item {
+        height: 44px;
+        padding: 4px 3px;
+    }
+    
+    .nav-item i {
+        font-size: 1.1em;
+    }
+    
+    .nav-item span {
+        font-size: 0.7em;
+    }
+    
+    /* Hide auth container status bar padding */
+    .auth-container {
+        padding-top: env(safe-area-inset-top);
+    }
+    
+    /* Better modal positioning in PWA */
+    .modal-content {
+        margin-top: calc(20px + env(safe-area-inset-top));
+        max-height: calc(90vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    }
+    
+    /* Adjust mobile more menu for PWA */
+    .mobile-more-menu {
+        max-height: 50vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* iOS-specific PWA enhancements */
+@supports (-webkit-touch-callout: none) {
+    @media all and (display-mode: standalone) {
+        /* Prevent bounce scrolling */
+        body {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .container {
+            height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+        
+        /* Smooth transitions */
+        .section {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+    }
+}
